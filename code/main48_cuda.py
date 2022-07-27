@@ -79,11 +79,11 @@ def train(epoch):
         optimizer.step()
 
         steps += 1
-        avg_loss += loss.data[0].detach().cpu().numpy()
+        avg_loss += loss.data.detach().cpu().numpy()
         if batch_idx % args.log_interval == 0:
             print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
                 epoch, batch_idx * len(data), len(train_loader.dataset),
-                100. * batch_idx / len(train_loader), loss.data[0]))
+                100. * batch_idx / len(train_loader), loss.data))
         
     #if epoch % 10 == 0:
     lr = args.lr * (args.wd ** (epoch / 10))
@@ -99,7 +99,7 @@ def validation():
     for data, target in val_loader:
         data, target = Variable(data, volatile=True).to(device), Variable(target).to(device)
         output = model(data)
-        validation_loss += F.nll_loss(output, target, size_average=False).data[0] # sum up batch loss
+        validation_loss += F.nll_loss(output, target, size_average=False).data # sum up batch loss
         pred = output.data.max(1, keepdim=True)[1] # get the index of the max log-probability
         correct += pred.eq(target.data.view_as(pred)).cpu().sum()
 
