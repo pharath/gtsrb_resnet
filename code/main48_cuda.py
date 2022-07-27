@@ -84,12 +84,12 @@ def train(epoch):
             print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
                 epoch, batch_idx * len(data), len(train_loader.dataset),
                 100. * batch_idx / len(train_loader), loss.data[0]))
-
-	#if epoch % 10 == 0:
-	lr = args.lr * (args.wd ** (epoch / 10))
-	for param_group in optimizer.param_groups:
-		param_group['lr'] = lr
-
+        
+    #if epoch % 10 == 0:
+    lr = args.lr * (args.wd ** (epoch / 10))
+    for param_group in optimizer.param_groups:
+        param_group['lr'] = lr
+        
     return float(avg_loss) / steps
 
 def validation():
