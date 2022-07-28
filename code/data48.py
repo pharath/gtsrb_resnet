@@ -29,7 +29,7 @@ def initialize_data(folder):
         zip_ref.extractall(folder)
         zip_ref.close()
         os.mkdir(train_folder)
-        os.rename("/content/drive/MyDrive/Colab Notebooks/traffic-sign/GTSRB_ResNet/gtsrb_resnet/data_zip/GTSRB/Final_Training/Images", train_folder)
+        os.rename( folder + "/GTSRB/Final_Training/Images", train_folder)
     # extract test_data.zip to test_data
     test_folder = folder + '/test_images'
     if not os.path.isdir(test_folder):
@@ -38,7 +38,7 @@ def initialize_data(folder):
         zip_ref.extractall(folder)
         zip_ref.close()
         os.mkdir(test_folder)
-        os.rename("/content/drive/MyDrive/Colab Notebooks/traffic-sign/GTSRB_ResNet/gtsrb_resnet/data_zip/GTSRB/Final_Test/Images", test_folder)
+        os.rename( folder + "/GTSRB/Final_Test/Images", test_folder)
 
     # make validation_data by using images 00000*, 00001* and 00002* in each class
     val_folder = folder + '/val_images'
